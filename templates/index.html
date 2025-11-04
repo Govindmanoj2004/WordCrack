@@ -3,24 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wordlist Generator</title>
+    <title>WordCrack – Educational Wordlist Generator</title>
+
+    <!-- Favicon (Lock + Key) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23dc2626' rx='20'/><path fill='%23ffffff' d='M65 45h-5v-10a15 15 0 0 0-30 0v10h-5a5 5 0 0 0-5 5v30a5 5 0 0 0 5 5h40a5 5 0 0 0 5-5V50a5 5 0 0 0-5-5zm-15 20v10h-10v-10a5 5 0 1 1 10 0zm10-20h-20v-10a10 10 0 0 1 20 0z'/></svg>"
+      type="image/svg+xml"
+    />
+
+    <!-- Apple Touch Icon -->
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23dc2626' rx='20'/><path fill='%23ffffff' d='M65 45h-5v-10a15 15 0 0 0-30 0v10h-5a5 5 0 0 0-5 5v30a5 5 0 0 0 5 5h40a5 5 0 0 0 5-5V50a5 5 0 0 0-5-5zm-15 20v10h-10v-10a5 5 0 1 1 10 0zm10-20h-20v-10a10 10 0 0 1 20 0z'/></svg>"
+    />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Optional: Custom Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#dc2626", // Red-600
+            },
+          },
+        },
+      };
+    </script>
   </head>
   <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
     <div class="bg-white border-b border-gray-200">
       <div class="max-w-5xl mx-auto px-6 py-6">
         <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-semibold text-gray-900">
-              Wordlist Generator
-            </h1>
-            <p class="text-sm text-gray-500 mt-1">
-              Educational security research tool
-            </p>
+          <!-- Logo + Title -->
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center shadow-sm"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">WordCrack</h1>
+              <p class="text-sm text-gray-500 mt-0.5">
+                Educational Wordlist Generator
+              </p>
+            </div>
           </div>
+
+          <!-- Warning Badge -->
           <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-2">
-            <p class="text-xs font-medium text-red-800">AUTHORIZED USE ONLY</p>
+            <p
+              class="text-xs font-medium text-red-800 flex items-center gap-1.5"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              AUTHORIZED USE ONLY
+            </p>
           </div>
         </div>
       </div>
