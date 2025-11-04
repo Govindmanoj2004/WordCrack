@@ -5,29 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WordCrack – Educational Wordlist Generator</title>
 
-    <!-- Favicon (Lock + Key) -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23dc2626' rx='20'/><path fill='%23ffffff' d='M65 45h-5v-10a15 15 0 0 0-30 0v10h-5a5 5 0 0 0-5 5v30a5 5 0 0 0 5 5h40a5 5 0 0 0 5-5V50a5 5 0 0 0-5-5zm-15 20v10h-10v-10a5 5 0 1 1 10 0zm10-20h-20v-10a10 10 0 0 1 20 0z'/></svg>"
       type="image/svg+xml"
     />
 
-    <!-- Apple Touch Icon -->
     <link
       rel="apple-touch-icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23dc2626' rx='20'/><path fill='%23ffffff' d='M65 45h-5v-10a15 15 0 0 0-30 0v10h-5a5 5 0 0 0-5 5v30a5 5 0 0 0 5 5h40a5 5 0 0 0 5-5V50a5 5 0 0 0-5-5zm-15 20v10h-10v-10a5 5 0 1 1 10 0zm10-20h-20v-10a10 10 0 0 1 20 0z'/></svg>"
     />
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Optional: Custom Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: "#dc2626", // Red-600
+              primary: "#dc2626",
             },
           },
         },
@@ -35,11 +31,9 @@
     </script>
   </head>
   <body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
     <div class="bg-white border-b border-gray-200">
       <div class="max-w-5xl mx-auto px-6 py-6">
         <div class="flex items-center justify-between">
-          <!-- Logo + Title -->
           <div class="flex items-center gap-3">
             <div
               class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center shadow-sm"
@@ -66,7 +60,6 @@
             </div>
           </div>
 
-          <!-- Warning Badge -->
           <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-2">
             <p
               class="text-xs font-medium text-red-800 flex items-center gap-1.5"
@@ -86,7 +79,6 @@
     </div>
 
     <div class="max-w-5xl mx-auto px-6 py-8">
-      <!-- Auth Card -->
       <div
         class="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm"
       >
@@ -126,7 +118,6 @@
       </div>
 
       <form id="genForm" class="space-y-6">
-        <!-- Personal Information -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -212,7 +203,6 @@
           </div>
         </div>
 
-        <!-- Family & Relationships -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -270,7 +260,6 @@
           </div>
         </div>
 
-        <!-- Location -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -328,7 +317,6 @@
           </div>
         </div>
 
-        <!-- Education & Work -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -380,7 +368,6 @@
           </div>
         </div>
 
-        <!-- Interests -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -444,7 +431,6 @@
           </div>
         </div>
 
-        <!-- Tech & Gaming -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -494,7 +480,6 @@
           </div>
         </div>
 
-        <!-- Numbers & Patterns -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -544,7 +529,6 @@
           </div>
         </div>
 
-        <!-- Configuration -->
         <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
           <h2
             class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
@@ -641,7 +625,6 @@
           </div>
         </div>
 
-        <!-- Submit -->
         <button
           type="submit"
           id="genBtn"
@@ -667,7 +650,6 @@
         </button>
       </form>
 
-      <!-- Results -->
       <div
         id="preview"
         class="mt-6 bg-white rounded-lg border border-gray-200 p-6 shadow-sm hidden"
@@ -742,7 +724,6 @@
         const span = btn.querySelector("span");
         span.innerHTML = valid ? `Generate Wordlist` : `Authorization Required`;
 
-        // Update classes
         if (valid) {
           btn.className =
             "w-full py-3.5 px-6 text-white rounded-lg font-medium transition-all bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-2";
@@ -780,7 +761,6 @@
             .filter(Boolean) || [];
 
         const payload = {
-          // Personal
           full_name: fd.get("full_name")?.trim(),
           nickname: fd.get("nickname")?.trim(),
           dob: fd.get("dob")?.trim(),
@@ -788,26 +768,22 @@
           phone: fd.get("phone")?.trim(),
           email: fd.get("email")?.trim(),
 
-          // Family
           father: fd.get("father")?.trim(),
           mother: fd.get("mother")?.trim(),
           sibling: fd.get("sibling")?.trim(),
           partner: fd.get("partner")?.trim(),
           child: fd.get("child")?.trim(),
 
-          // Location
           hometown: fd.get("hometown")?.trim(),
           city: fd.get("city")?.trim(),
           area: fd.get("area")?.trim(),
           pincode: fd.get("pincode")?.trim(),
 
-          // Education & Work
           school: fd.get("school")?.trim(),
           college: fd.get("college")?.trim(),
           company: fd.get("company")?.trim(),
           job_role: fd.get("job_role")?.trim(),
 
-          // Interests
           color: fd.get("color")?.trim(),
           food: fd.get("food")?.trim(),
           movie: fd.get("movie")?.trim(),
@@ -815,24 +791,20 @@
           sports: fd.get("sports")?.trim(),
           pet: fd.get("pet")?.trim(),
 
-          // Tech
           gaming_handle: fd.get("gaming_handle")?.trim(),
           apps: apps,
           device: fd.get("device")?.trim(),
 
-          // Numbers
           important_years: years,
           lucky_number: fd.get("lucky_number")?.trim(),
           vehicle: fd.get("vehicle")?.trim(),
 
-          // Custom
           include_specials: fd.has("specials"),
           include_uppercase: fd.has("uppercase"),
           min_len: Number(fd.get("min_len")) || 6,
           max_len: Number(fd.get("max_len")) || 16,
           extra_words: extra,
 
-          // System
           auth_phrase: auth.value.trim(),
           count: Math.min(5000, Math.max(1, Number(fd.get("count")) || 500)),
         };
@@ -852,6 +824,7 @@
             data.lines.reduce((a, w) => a + w.length, 0) / data.lines.length
           ).toFixed(1);
           stats.textContent = `Generated: ${data.count} | Avg: ${avg} chars`;
+          preview.scrollIntoView({ behavior: "smooth", block: "start" });
 
           download.onclick = () => {
             const blob = new Blob([textarea.value], { type: "text/plain" });
