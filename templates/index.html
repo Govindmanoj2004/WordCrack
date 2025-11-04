@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordlist Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-5xl mx-auto px-6 py-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-semibold text-gray-900">
+              Wordlist Generator
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">
+              Educational security research tool
+            </p>
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+            <p class="text-xs font-medium text-red-800">AUTHORIZED USE ONLY</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 py-8">
+      <!-- Auth Card -->
+      <div
+        class="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm"
+      >
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-sm font-semibold text-gray-900 mb-1">
+              Authorization Required
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">
+              Enter the authorization phrase to enable generation
+            </p>
+            <input
+              type="text"
+              name="auth_phrase"
+              placeholder="Type: I_HAVE_PERMISSION"
+              class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <form id="genForm" class="space-y-6">
+        <!-- Personal Information -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+            </div>
+            Personal Information
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Full Name *</label
+              >
+              <input
+                required
+                name="full_name"
+                placeholder="John Doe"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Nickname</label
+              >
+              <input name="nickname" placeholder="Johnny" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Date of Birth *</label
+              >
+              <input
+                required
+                name="dob"
+                placeholder="DD/MM/YYYY"
+                class="input"
+                pattern="\d{2}/\d{2}/\d{4}"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Gender</label
+              >
+              <input name="gender" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Phone Number *</label
+              >
+              <input
+                required
+                name="phone"
+                placeholder="10 digits"
+                class="input"
+                pattern="\d{10}"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Email/Username *</label
+              >
+              <input
+                required
+                name="email"
+                placeholder="user@example.com"
+                class="input"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Family & Relationships -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-pink-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            Family & Relationships
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Father's Name</label
+              >
+              <input name="father" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Mother's Name</label
+              >
+              <input name="mother" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Sibling's Name</label
+              >
+              <input name="sibling" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Partner</label
+              >
+              <input name="partner" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Child's Name</label
+              >
+              <input name="child" placeholder="Optional" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+            </div>
+            Location
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Hometown</label
+              >
+              <input name="hometown" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Current City</label
+              >
+              <input name="city" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Street/Area</label
+              >
+              <input name="area" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Postal Code</label
+              >
+              <input name="pincode" placeholder="Optional" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Education & Work -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            Education & Work
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >School</label
+              >
+              <input name="school" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >College/University</label
+              >
+              <input name="college" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Company</label
+              >
+              <input name="company" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Job Role</label
+              >
+              <input name="job_role" placeholder="Optional" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-orange-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+            </div>
+            Interests & Favorites
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Favorite Color</label
+              >
+              <input name="color" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Favorite Food</label
+              >
+              <input name="food" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Favorite Movie/Show</label
+              >
+              <input name="movie" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Favorite Celebrity</label
+              >
+              <input name="celebrity" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Sports Team/Player</label
+              >
+              <input name="sports" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Pet's Name</label
+              >
+              <input name="pet" placeholder="Optional" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech & Gaming -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-cyan-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            Tech & Gaming
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Gaming Username</label
+              >
+              <input
+                name="gaming_handle"
+                placeholder="Optional"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Device Brand</label
+              >
+              <input name="device" placeholder="Optional" class="input" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Favorite Apps</label
+              >
+              <input name="apps" placeholder="Comma separated" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Numbers & Patterns -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-teal-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"
+                ></path>
+              </svg>
+            </div>
+            Numbers & Patterns
+          </h2>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Important Years</label
+              >
+              <input
+                name="important_years"
+                placeholder="2004, 2018"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Lucky Number</label
+              >
+              <input name="lucky_number" placeholder="Optional" class="input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Vehicle Reg</label
+              >
+              <input name="vehicle" placeholder="Partial" class="input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Configuration -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <h2
+            class="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2"
+          >
+            <div
+              class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-4 h-4 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                ></path>
+              </svg>
+            </div>
+            Configuration
+          </h2>
+          <div class="space-y-4">
+            <div class="flex flex-wrap gap-6">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="specials"
+                  checked
+                  class="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                />
+                <span class="text-sm text-gray-700"
+                  >Special characters (@#$!)</span
+                >
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="uppercase"
+                  checked
+                  class="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                />
+                <span class="text-sm text-gray-700">Uppercase variants</span>
+              </label>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                  >Min Length</label
+                >
+                <input
+                  type="number"
+                  name="min_len"
+                  placeholder="6"
+                  class="input"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                  >Max Length</label
+                >
+                <input
+                  type="number"
+                  name="max_len"
+                  placeholder="16"
+                  class="input"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                  >Count</label
+                >
+                <input
+                  type="number"
+                  name="count"
+                  value="500"
+                  min="1"
+                  max="5000"
+                  class="input"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5"
+                >Extra Words</label
+              >
+              <textarea
+                name="extra_words"
+                placeholder="Comma or space separated"
+                class="input h-20 resize-none"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="genBtn"
+          disabled
+          class="w-full py-3.5 px-6 text-white rounded-lg font-medium transition-all duration-200 bg-gray-300 cursor-not-allowed disabled:bg-gray-300 disabled:cursor-not-allowed"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              ></path>
+            </svg>
+            Authorization Required
+          </span>
+        </button>
+      </form>
+
+      <!-- Results -->
+      <div
+        id="preview"
+        class="mt-6 bg-white rounded-lg border border-gray-200 p-6 shadow-sm hidden"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-gray-900">
+                Generated Wordlist
+              </h3>
+              <p id="stats" class="text-sm text-gray-500"></p>
+            </div>
+          </div>
+          <button
+            id="download"
+            class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              ></path>
+            </svg>
+            Download
+          </button>
+        </div>
+        <textarea
+          readonly
+          class="w-full h-96 p-4 font-mono text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none resize-none"
+        ></textarea>
+      </div>
+    </div>
+
+    <script>
+      const auth = document.querySelector("[name=auth_phrase]");
+      const btn = document.getElementById("genBtn");
+      const form = document.getElementById("genForm");
+      const preview = document.getElementById("preview");
+      const textarea = preview.querySelector("textarea");
+      const stats = document.getElementById("stats");
+      const download = document.getElementById("download");
+
+      const AUTH = "I_HAVE_PERMISSION";
+
+      function checkAuth() {
+        const valid = auth.value.trim() === AUTH;
+        btn.disabled = !valid;
+        const span = btn.querySelector("span");
+        span.innerHTML = valid ? `Generate Wordlist` : `Authorization Required`;
+
+        // Update classes
+        if (valid) {
+          btn.className =
+            "w-full py-3.5 px-6 text-white rounded-lg font-medium transition-all bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-2";
+        } else {
+          btn.className =
+            "w-full py-3.5 px-6 text-white rounded-lg font-medium bg-gray-300 cursor-not-allowed flex items-center justify-center gap-2";
+        }
+      }
+
+      ["input", "keyup", "paste", "change"].forEach((ev) =>
+        auth.addEventListener(ev, () => setTimeout(checkAuth, 0))
+      );
+      document.addEventListener("DOMContentLoaded", checkAuth);
+      auth.focus();
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (auth.value.trim() !== AUTH) return alert("Invalid auth phrase");
+
+        const fd = new FormData(form);
+        const years =
+          fd
+            .get("important_years")
+            ?.split(/[,\s]+/)
+            .filter(Boolean) || [];
+        const extra =
+          fd
+            .get("extra_words")
+            ?.split(/[,\s]+/)
+            .filter(Boolean) || [];
+        const apps =
+          fd
+            .get("apps")
+            ?.split(/[,\s]+/)
+            .filter(Boolean) || [];
+
+        const payload = {
+          // Personal
+          full_name: fd.get("full_name")?.trim(),
+          nickname: fd.get("nickname")?.trim(),
+          dob: fd.get("dob")?.trim(),
+          gender: fd.get("gender")?.trim(),
+          phone: fd.get("phone")?.trim(),
+          email: fd.get("email")?.trim(),
+
+          // Family
+          father: fd.get("father")?.trim(),
+          mother: fd.get("mother")?.trim(),
+          sibling: fd.get("sibling")?.trim(),
+          partner: fd.get("partner")?.trim(),
+          child: fd.get("child")?.trim(),
+
+          // Location
+          hometown: fd.get("hometown")?.trim(),
+          city: fd.get("city")?.trim(),
+          area: fd.get("area")?.trim(),
+          pincode: fd.get("pincode")?.trim(),
+
+          // Education & Work
+          school: fd.get("school")?.trim(),
+          college: fd.get("college")?.trim(),
+          company: fd.get("company")?.trim(),
+          job_role: fd.get("job_role")?.trim(),
+
+          // Interests
+          color: fd.get("color")?.trim(),
+          food: fd.get("food")?.trim(),
+          movie: fd.get("movie")?.trim(),
+          celebrity: fd.get("celebrity")?.trim(),
+          sports: fd.get("sports")?.trim(),
+          pet: fd.get("pet")?.trim(),
+
+          // Tech
+          gaming_handle: fd.get("gaming_handle")?.trim(),
+          apps: apps,
+          device: fd.get("device")?.trim(),
+
+          // Numbers
+          important_years: years,
+          lucky_number: fd.get("lucky_number")?.trim(),
+          vehicle: fd.get("vehicle")?.trim(),
+
+          // Custom
+          include_specials: fd.has("specials"),
+          include_uppercase: fd.has("uppercase"),
+          min_len: Number(fd.get("min_len")) || 6,
+          max_len: Number(fd.get("max_len")) || 16,
+          extra_words: extra,
+
+          // System
+          auth_phrase: auth.value.trim(),
+          count: Math.min(5000, Math.max(1, Number(fd.get("count")) || 500)),
+        };
+
+        try {
+          const resp = await fetch("/api/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await resp.json();
+          if (data.error) throw new Error(data.error);
+
+          preview.classList.remove("hidden");
+          textarea.value = data.lines.join("\n");
+          const avg = (
+            data.lines.reduce((a, w) => a + w.length, 0) / data.lines.length
+          ).toFixed(1);
+          stats.textContent = `Generated: ${data.count} | Avg: ${avg} chars`;
+
+          download.onclick = () => {
+            const blob = new Blob([textarea.value], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "wordlist--EDU.txt";
+            a.click();
+            URL.revokeObjectURL(url);
+          };
+        } catch (err) {
+          alert("Error: " + err.message);
+        }
+      });
+    </script>
+
+    <style>
+      .input {
+        @apply px-4 py-3 border rounded-lg w-full focus:ring-2 focus:ring-primary focus:border-transparent;
+      }
+      section {
+        @apply bg-gray-50 p-6 rounded-xl;
+      }
+      h2 {
+        @apply flex items-center gap-2;
+      }
+    </style>
+  </body>
+</html>
